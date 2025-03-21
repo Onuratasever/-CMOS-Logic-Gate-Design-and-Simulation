@@ -1,0 +1,21 @@
+* SPICE3 file created from yeniinverter.ext - technology: scmos
+
+.include tsmc_cmos025 
+.option scale=0.12u
+
+.model nfet NMOS
+.model pfet PMOS
+
+M1000 output input vddd vddd pfet w=8 l=2
++  ad=40p pd=26u as=40p ps=26u
+M1001 output input gnd Gnd nfet w=4 l=2
++  ad=20p pd=18u as=20p ps=18u
+C0 gnd output 0.046228f
+C1 vddd input 0.043241f
+C2 vddd output 0.110509f
+C3 output input 0.067748f
+
+Vdd vddd 0 2.5V 
+Vin input 0 PULSE(0 2.5 0ns 10ns 10ns 20ns 40ns) 
+CL output 0 1fF 
+.TRAN 1ns 100ns

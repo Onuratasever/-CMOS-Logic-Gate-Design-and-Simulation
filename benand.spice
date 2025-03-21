@@ -1,0 +1,29 @@
+* SPICE3 file created from benand.ext - technology: scmos
+
+.option scale=0.12u
+.include tsmc_cmos025
+
+.model nfet NMOS
+.model pfet PMOS
+
+M1000 a_n2_n77# input1 gnd Gnd nfet w=4 l=2
++  ad=8p pd=8u as=20p ps=18u
+M1001 output input1 vddd vddd pfet w=8 l=2
++  ad=24p pd=14u as=40p ps=26u
+M1002 output input2 a_n2_n77# Gnd nfet w=4 l=2
++  ad=20p pd=18u as=8p ps=8u
+M1003 vddd input2 output vddd pfet w=8 l=2
++  ad=40p pd=26u as=24p ps=14u
+
+C0 input2 vddd 0.061902f
+C1 input1 output 0.063961f
+C2 input2 output 0.144156f
+C3 input1 input2 0.343278f
+C4 vddd output 0.248945f
+C5 input1 vddd 0.042113f
+
+Vdd vddd 0 2.5V
+Vin1 input1 0 PULSE(0 2.5 0ns 10ns 10ns 40ns 80ns)
+Vin2 input2 0 PULSE(0 2.5 0ns 10ns 10ns 20ns 40ns)
+CL output 0 1fF 
+.TRAN 1ns 500ns 
